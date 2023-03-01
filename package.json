@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "style": "stylelint 'src/styles/*.scss'",
+    "lint": "eslint 'src/*'",
     "prepare": "husky install"
   },
   "dependencies": {

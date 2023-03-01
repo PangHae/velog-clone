@@ -14,30 +14,26 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "import"],
   "rules": {
     "prettier/prettier": "error",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    "import/no-unresolved": "off",
-    "import/extensions": [
-      2,
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    "no-undef": "off",
-    "react/react-in-jsx-scope": "off",
-    "import/prefer-default-export": "off",
-    "react/function-component-definition": "off",
-    "import/no-extraneous-dependencies": "off"
+    "no-undef": "off"
+  },
+  "settings": {
+    "typescript": true,
+    "node": true
   }
 }
