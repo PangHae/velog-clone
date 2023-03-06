@@ -13,6 +13,7 @@ interface Props {
 const CardItem: FC<Props> = ({ userId, title, body }) => {
   const { data } = useGetUserDetail(userId);
   const [userName, setUserName] = useState('');
+
   useEffect(() => {
     if (data && data.statusText === 'OK') {
       setUserName(data.data.name);
@@ -20,10 +21,10 @@ const CardItem: FC<Props> = ({ userId, title, body }) => {
   }, [data]);
 
   return (
-    <section className="card-item">
+    <article className="card-item">
       <CardContent title={title} body={body} />
       <CardInformation author={userName} />
-    </section>
+    </article>
   );
 };
 

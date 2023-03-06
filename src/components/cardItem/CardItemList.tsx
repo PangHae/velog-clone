@@ -19,14 +19,18 @@ const CardItemList = () => {
     }
   }, [data]);
 
-  return articleList.map((value) => (
-    <CardItem
-      key={value.articleId}
-      userId={value.userId}
-      title={value.title}
-      body={value.body}
-    />
-  ));
+  return (
+    <>
+      {articleList.map((value) => (
+        <CardItem
+          key={value.articleId}
+          userId={value.userId}
+          title={value.title}
+          body={value.body}
+        />
+      ))}
+    </>
+  );
 };
 
 export default CardItemList;
