@@ -15,3 +15,7 @@
 벨로그 메인페이지 + 상세페이지 클론코딩
 
 velog png = https://images.velog.io/velog.png
+
+```env
+VITE_URL=https://my-json-server.typicode.com
+```

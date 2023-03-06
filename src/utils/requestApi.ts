@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
-axios.interceptors.request.use(
+export const requestApi = axios.create();
+
+requestApi.interceptors.request.use(
   (config) => {
     console.log(config);
     return config;
@@ -10,7 +13,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+requestApi.interceptors.response.use(
   (response) => {
     console.log(response);
     return response;
@@ -19,9 +22,3 @@ axios.interceptors.response.use(
     console.log(error);
   }
 );
-
-// const requestApi = axios.create({
-//   baseURL: process.env.REACT_APP_URL,
-// });
-
-export {};
