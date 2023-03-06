@@ -1,0 +1,30 @@
+@use '@/styles/dark' as dark;
+
+.card {
+  &-item {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 1rem;
+    border-radius: 4px;
+    background-color: dark.$bg-element1;
+    box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
+    transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
+    overflow: hidden;
+  }
+  &-content {
+    padding: 1rem;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+  }
+  &-information {
+    padding: 0.625rem 1rem;
+    border-top: 1px solid dark.$border4;
+    display: flex;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+}

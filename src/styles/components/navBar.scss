@@ -1,0 +1,8 @@
+@use '@/styles/light' as light;
+@use '@/styles/dark' as dark;
+
+.nav-bar {
+  display: block;
+  box-sizing: inherit;
+  height: 4rem;
+}

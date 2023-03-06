@@ -1,3 +1,6 @@
+@use 'light' as light;
+@use 'dark' as dark;
+
 /* Box sizing rules */
 html {
   box-sizing: border-box;
@@ -33,8 +36,15 @@ body {
   padding: 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #333;
-  background-color: #fff;
+  color: light.$text1;
+  background-color: light.$bg-page1;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: dark.$text1;
+    background-color: dark.$bg-page1;
+  }
 }
 
 /* Remove list styles (bullets/numbers) */
