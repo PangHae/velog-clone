@@ -1,4 +1,4 @@
-import VelogLogo from '@/assets/velog.svg';
+import { ReactComponent as VelogLogo } from '@/assets/velog.svg';
 import '@/styles/components/header.scss';
 
 const Header = () => {
