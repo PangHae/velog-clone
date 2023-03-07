@@ -1,0 +1,28 @@
+@use '@/styles/dark' as dark;
+
+& > .popover {
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: 5;
+  & .popover-inner {
+    border: 1px solid dark.$border3;
+    margin-top: 0.5rem;
+    width: 12rem;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px 0px;
+    background: dark.$bg-element1;
+    color: dark.$text1;
+    transform-origin: right top;
+    & > .contact {
+      border-top: 1px solid var(--border3);
+      padding: 1rem;
+    }
+    & > .powered {
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+}

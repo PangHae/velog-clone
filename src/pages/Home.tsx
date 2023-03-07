@@ -1,9 +1,10 @@
-import CardItemList from '@/components/cardItem/CardItemList';
+import CardItemList from '@/components/composite/cardItem/CardItemList';
+import NavBar from '@/components/layout/NavBar';
 import '@/styles/pages/home.scss';
 
 const Home = () => (
   <div className="home-container">
-    <div className="article-tab">hello</div>
+    <NavBar />
     <div className="article-content">
       <main>
         <div className="list">
