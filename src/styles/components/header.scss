@@ -5,6 +5,8 @@
   display: block;
   box-sizing: inherit;
   height: 4rem;
+  width: 1728px;
+  margin: 0 auto;
   & > .header-nav {
     height: 100%;
     display: flex;
@@ -29,6 +31,22 @@
       -webkit-box-align: center;
       align-items: center;
       position: relative;
+      & > .search {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        outline: none;
+        border-radius: 50%;
+        color: var(--text1);
+        cursor: pointer;
+        margin-right: 0.5rem;
+      }
     }
   }
 }

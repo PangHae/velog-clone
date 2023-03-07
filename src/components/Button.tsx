@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import cx from 'classnames';
+import '@/styles/components/button.scss';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -15,7 +16,7 @@ const Button: FC<Props> = ({
   return (
     <button
       type={type || 'button'}
-      className={cx('ButtonJSX', className)}
+      className={cx(className)}
       value={value}
       {...props}
     >
