@@ -49,10 +49,15 @@
   }
   & > .options {
     display: flex;
+    padding: 0;
+    border: 0;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
+    background-color: dark.$bg-page1;
+    box-shadow: none;
+    color: none;
     & > svg {
       cursor: pointer;
       font-size: 1.5rem;

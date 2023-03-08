@@ -21,10 +21,17 @@
       -webkit-box-pack: center;
       justify-content: center;
       font-weight: bold;
-      color: var(--text1);
+      color: dark.$text1;
       font-size: 1.3125rem;
       text-decoration: none;
       font-family: 'Fira Mono', monospace;
+      & > a {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+      }
     }
     & > .setting {
       display: flex;

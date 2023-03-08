@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes } from 'react';
+import { AnchorHTMLAttributes, FC } from 'react';
 import cx from 'classnames';
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -6,7 +6,7 @@ interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   current: boolean;
 }
 
-const RedirectIcon = ({ className, current, href, children }: Props) => {
+const RedirectIcon: FC<Props> = ({ className, current, href, children }) => {
   return (
     <a
       href={href}

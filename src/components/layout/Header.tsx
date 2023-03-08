@@ -1,10 +1,14 @@
+import { FC } from 'react';
+
+import Button from '../base/Button';
+
 import { ReactComponent as VelogLogo } from '@/assets/velog.svg';
 import { ReactComponent as DarkLogo } from '@/assets/dark.svg';
 import { ReactComponent as Search } from '@/assets/search.svg';
-import Button from '../base/Button';
+
 import '@/styles/components/header.scss';
 
-const Header = () => {
+const Header: FC<{}> = () => {
   return (
     <header className="common-header">
       <div className="header-nav">

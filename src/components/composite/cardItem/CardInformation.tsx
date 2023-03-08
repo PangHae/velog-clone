@@ -1,8 +1,10 @@
+import { FC } from 'react';
+
 interface Props {
   author: string;
 }
 
-const CardInformation = ({ author }: Props) => {
+const CardInformation: FC<Props> = ({ author }) => {
   return <div className="card-information">{author}</div>;
 };
 

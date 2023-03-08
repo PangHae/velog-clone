@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useGetArticleList } from '@/hooks/queries/article';
 import CardItem from './CardItem';
 
@@ -9,7 +9,7 @@ type Article = {
   body: string;
 };
 
-const CardItemList = () => {
+const CardItemList: FC<{}> = () => {
   const [articleList, setArticleList] = useState<Article[]>([]);
   const { data } = useGetArticleList();
 

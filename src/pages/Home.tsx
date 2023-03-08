@@ -1,5 +1,6 @@
 import CardItemList from '@/components/composite/cardItem/CardItemList';
 import NavBar from '@/components/layout/NavBar';
+
 import '@/styles/pages/home.scss';
 
 const Home = () => (

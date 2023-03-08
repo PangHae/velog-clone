@@ -1,15 +1,17 @@
 import { FC } from 'react';
-import { KebabItem } from '../layout/NavBar';
+import { KebabItem } from '@/components/layout/NavBar';
+
+import '@/styles/components/dropdown.scss';
 
 interface Props {
   menuList: KebabItem[];
 }
 
-const Popover: FC<Props> = ({ menuList }) => {
+const KebabDropdown: FC<Props> = ({ menuList }) => {
   return (
-    <div className="popover">
+    <div className="kebab-dropdown">
       <div>
-        <div className="popover-inner">
+        <div className="dropdown-inner">
           <ul>
             {menuList.map((value) => (
               <li key={value.name}>
@@ -35,4 +37,4 @@ const Popover: FC<Props> = ({ menuList }) => {
   );
 };
 
-export default Popover;
+export default KebabDropdown;
