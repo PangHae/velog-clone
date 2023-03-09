@@ -69,6 +69,7 @@ const NavBar: FC<{}> = () => {
         <div className="anchor">
           {tabItems.map((value) => (
             <RedirectIcon
+              key={value.name}
               className={currentLoc === value.href ? 'active' : ''}
               current={currentLoc === value.href}
               href={value.href}

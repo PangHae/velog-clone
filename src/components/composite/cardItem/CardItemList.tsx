@@ -23,7 +23,7 @@ const CardItemList: FC<{}> = () => {
     <>
       {articleList.map((value) => (
         <CardItem
-          key={value.articleId}
+          key={value.title}
           userId={value.userId}
           title={value.title}
           body={value.body}

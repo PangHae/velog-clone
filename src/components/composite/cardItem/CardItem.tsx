@@ -32,12 +32,13 @@ const CardItem: FC<Props> = ({
     if (data && data.statusText === 'OK') {
       setUserName(data.data.username);
       setPostId(data.data.id);
-      setHref(`/@${data.data.username}/${title.replaceAll(' ', '-')}`);
+      const convertedTitle = title.replaceAll(' ', '-');
+      setHref(`/@${data.data.username}/${convertedTitle}`);
     }
   }, [data]);
 
   const handleClickArticle: MouseEventHandler<HTMLDivElement> = () => {
-    navigate(href, { state: { postId } });
+    navigate(href, { state: { postId, userName } });
   };
 
   return (
