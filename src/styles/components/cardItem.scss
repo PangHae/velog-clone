@@ -11,12 +11,76 @@
     box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
     transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
     overflow: hidden;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-10px);
+    }
+    & > .card-image {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      & > .image-wrapper {
+        width: 100%;
+        position: relative;
+        padding-top: 52.1921%;
+        & > img {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+        }
+      }
+    }
   }
   &-content {
     padding: 1rem;
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
+    & > .card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      & h4 {
+        font-size: 1rem;
+        margin: 0px 0px 0.25rem;
+        line-height: 1.5;
+        word-break: break-word;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color: dark.$text1;
+      }
+      & .description-wrapper {
+        flex: 1 1 0%;
+        & p {
+          margin: 0px 0px 1.5rem;
+          word-break: break-word;
+          overflow-wrap: break-word;
+          font-size: 0.875rem;
+          line-height: 1.5;
+          height: 3.9375rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: dark.$text2;
+        }
+      }
+    }
+    & > .sub-info {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: dark.$text3;
+      & .separator {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+      }
+    }
   }
   &-information {
     padding: 0.625rem 1rem;
@@ -26,5 +90,36 @@
     line-height: 1.5;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    & > .userinfo {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      & .user-icon {
+        object-fit: cover;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+        margin-right: 0.5rem;
+      }
+      & span {
+        color: dark.$text3;
+        & b {
+          color: dark.$text1;
+        }
+      }
+    }
+    & .likes {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      & svg {
+        width: 0.75rem;
+        height: 0.75rem;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }

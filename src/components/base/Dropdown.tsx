@@ -21,6 +21,7 @@ const Dropdown: FC<Props> = ({ dropdownItem, current, setCurrent }) => {
   return (
     <>
       <div
+        ref={ref}
         className="dropdown-main"
         onClick={() => setIsOpen((prevState) => !prevState)}
       >
@@ -28,7 +29,7 @@ const Dropdown: FC<Props> = ({ dropdownItem, current, setCurrent }) => {
         <ArrowDown />
       </div>
       {isOpen && (
-        <div className="dropdown" ref={ref}>
+        <div className="dropdown">
           <div>
             <div className="dropdown-inner">
               <ul>

@@ -2,12 +2,10 @@ import { FC, ReactElement, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import RedirectIcon from '../base/RedirectIcon';
-import KebabDropdown from '../composite/dropdown/KebabDropdown';
-import useOutsideClick from '@/hooks/useOutsideClick';
+import KebabDropdown from '../base/KebabDropdown';
 
 import { ReactComponent as Trend } from '@/assets/trending.svg';
 import { ReactComponent as Recent } from '@/assets/recent.svg';
-import { ReactComponent as Kebab } from '@/assets/kebab.svg';
 
 import '@/styles/components/navBar.scss';
 import Dropdown from '../base/Dropdown';
@@ -58,7 +56,6 @@ const NavBar: FC<{}> = () => {
   const location = useLocation();
   const [currentLoc, setCurrentLoc] = useState('');
   const [selectedFilter, setSelectedFilter] = useState(dropdownItem[1]);
-  const { ref, isOpen, setIsOpen } = useOutsideClick();
 
   useEffect(() => {
     if (location.pathname) {
@@ -90,14 +87,7 @@ const NavBar: FC<{}> = () => {
           setCurrent={setSelectedFilter}
         />
       </div>
-      <div
-        ref={ref}
-        className="options"
-        onClick={() => setIsOpen((prevState) => !prevState)}
-      >
-        <Kebab />
-      </div>
-      {isOpen && <KebabDropdown menuList={kebabItem} />}
+      <KebabDropdown menuList={kebabItem} />
     </div>
   );
 };
