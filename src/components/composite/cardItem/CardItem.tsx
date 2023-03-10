@@ -38,7 +38,7 @@ const CardItem: FC<Props> = ({
   }, [data]);
 
   const handleClickArticle: MouseEventHandler<HTMLDivElement> = () => {
-    navigate(href, { state: { postId, userName } });
+    navigate(href, { state: { postId, userName, userId } });
   };
 
   return (
