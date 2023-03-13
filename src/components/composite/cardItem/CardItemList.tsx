@@ -9,12 +9,12 @@ type Article = {
   body: string;
 };
 
-const CardItemList: FC<{}> = () => {
+const CardItemList: FC = () => {
   const [articleList, setArticleList] = useState<Article[]>([]);
   const { data } = useGetArticleList();
 
   useEffect(() => {
-    if (data && data.statusText === 'OK') {
+    if (data && data.status === 200) {
       setArticleList(data.data);
     }
   }, [data]);

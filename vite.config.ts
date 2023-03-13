@@ -12,13 +12,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://jsonplaceholder.typicode.com',
-        changeOrigin: true,
-        rewrite: (url) => url.replace(/^\/api/, ''),
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://jsonplaceholder.typicode.com',
+  //       changeOrigin: true,
+  //       rewrite: (url) => url.replace(/^\/api/, ''),
+  //     },
+  //   },
+  // },
 });

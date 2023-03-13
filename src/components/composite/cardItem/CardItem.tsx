@@ -29,7 +29,7 @@ const CardItem: FC<Props> = ({
   const [href, setHref] = useState('');
 
   useEffect(() => {
-    if (data && data.statusText === 'OK') {
+    if (data && data.status === 200) {
       setUserName(data.data.username);
       setPostId(data.data.id);
       const convertedTitle = title.replaceAll(' ', '-');

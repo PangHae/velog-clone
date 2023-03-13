@@ -3,7 +3,7 @@ import { requestApi } from '@/utils/requestApi';
 
 export const useGetArticleList = () => {
   const { data, error } = useQuery(['getArticleList'], () =>
-    requestApi.get('/api/posts')
+    requestApi.get('/posts')
   );
 
   return { data, error };
@@ -11,7 +11,7 @@ export const useGetArticleList = () => {
 
 export const useGetArticleDetail = (postNumber: number) => {
   const { data, error } = useQuery(['getArticleDetail'], () =>
-    requestApi.get(`/api/${postNumber}`)
+    requestApi.get(`/${postNumber}`)
   );
   return { data, error };
 };

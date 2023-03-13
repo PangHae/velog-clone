@@ -7,16 +7,14 @@ interface PostDetailProps {
 }
 
 export const useGetUserList = () => {
-  const { data, error } = useQuery(['getUserList'], () =>
-    requestApi('/api/users')
-  );
+  const { data, error } = useQuery(['getUserList'], () => requestApi('/users'));
   return { data, error };
 };
 
 export const useGetUserDetail = (userId: number) => {
   const { data, error } = useQuery(
     ['getUserDetail', userId],
-    () => requestApi.get(`/api/users/${userId}`),
+    () => requestApi.get(`/users/${userId}`),
     {
       enabled: !!userId,
     }
@@ -26,7 +24,7 @@ export const useGetUserDetail = (userId: number) => {
 
 export const useGetUserPostDetail = ({ userId, postId }: PostDetailProps) => {
   const { data, error } = useQuery(['getUserPostDetail', userId, postId], () =>
-    requestApi(`/api/users/${userId}/posts`, {
+    requestApi(`/users/${userId}/posts`, {
       params: {
         id: postId,
       },

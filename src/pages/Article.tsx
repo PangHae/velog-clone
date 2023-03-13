@@ -32,7 +32,7 @@ const Article = () => {
   });
 
   useEffect(() => {
-    if (data && data.statusText === 'OK') {
+    if (data && data.status === 200) {
       setCurrentArticle(data.data[0]);
     }
   }, [data]);
