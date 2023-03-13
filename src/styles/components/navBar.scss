@@ -1,0 +1,67 @@
+@use '@/styles/dark' as dark;
+
+@mixin underlineLeft($left: 0%) {
+  left: $left;
+}
+
+.article-nav {
+  & > .filter {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    & > .anchor {
+      display: flex;
+      position: relative;
+      width: 14rem;
+      & > .underline {
+        @include underlineLeft();
+        width: 50%;
+        height: 2px;
+        position: absolute;
+        bottom: 0px;
+        background: dark.$border1;
+      }
+      & .left {
+        @include underlineLeft(50%);
+      }
+      & .RedirectIcon {
+        width: 7rem;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        font-size: 1.125rem;
+        text-decoration: none;
+        color: dark.$text3;
+        height: 3rem;
+        & > svg {
+          font-size: 1.5rem;
+          margin-right: 0.5rem;
+        }
+      }
+      & .active {
+        font-weight: bold;
+        color: dark.$text1;
+      }
+    }
+  }
+  & > .options {
+    display: flex;
+    padding: 0;
+    border: 0;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: dark.$bg-page1;
+    box-shadow: none;
+    color: none;
+    & > svg {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: dark.$text3;
+    }
+  }
+}

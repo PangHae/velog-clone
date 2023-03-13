@@ -1,0 +1,65 @@
+@use 'light' as light;
+@use 'dark' as dark;
+
+/* Box sizing rules */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+/* Remove default padding */
+p {
+  padding: 0;
+}
+
+/* Set default font size and line height */
+body {
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: light.$text1;
+  background-color: light.$bg-page1;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: dark.$text1;
+    background-color: dark.$bg-page1;
+  }
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Remove hyperlink underline */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+}

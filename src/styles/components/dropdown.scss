@@ -1,0 +1,104 @@
+@use '@/styles/dark' as dark;
+
+.dropdown-main {
+  background: dark.$bg-element1;
+  height: 2rem;
+  width: 6rem;
+  border-radius: 4px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 600;
+  color: dark.$text2;
+  font-size: 0.875rem;
+  box-shadow: rgb(0 0 0 / 5%) 0px 0px 4px;
+  &:hover {
+    cursor: pointer;
+  }
+  & > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@mixin dropdown-default {
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: 5;
+  & .dropdown-inner {
+    opacity: 1;
+    transform: scale(1);
+    border: 1px solid dark.$border3;
+    margin-top: 0.5rem;
+    width: 12rem;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px 0px;
+    background: dark.$bg-element1;
+    color: dark.$text1;
+    transform-origin: right top;
+    & > ul {
+      list-style: none;
+      padding-left: 0px;
+      margin: 0px;
+      & li {
+        font-weight: 600;
+        font-size: 0.875rem;
+        display: block;
+        padding: 0.75rem 1rem;
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      & li + li {
+        border-top: 1px solid dark.$border4;
+      }
+      & .active {
+        color: dark.$primary1;
+      }
+    }
+    @content;
+  }
+}
+
+.dropdown {
+  @include dropdown-default;
+}
+
+.kebab-dropdown {
+  @include dropdown-default {
+    & > .contact {
+      border-top: 1px solid dark.$border3;
+      padding: 1rem;
+      & h5 {
+        margin: 0px;
+        font-size: 0.75rem;
+      }
+      & .email {
+        color: dark.$text1;
+        font-size: 0.75rem;
+      }
+    }
+    & > .powered {
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      & img {
+        overflow-clip-margin: content-box;
+        overflow: clip;
+        width: 120px;
+        height: auto;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

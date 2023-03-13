@@ -1,0 +1,41 @@
+@use '@/styles/dark' as dark;
+
+.login-button {
+  height: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  word-break: keep-all;
+  background: dark.$bg-element5;
+  color: dark.$button-text;
+  transition: all 0.125s ease-in 0s;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dark-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.25rem;
+  position: relative;
+  & > .icon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    & > .dark {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+      color: dark.$text1;
+    }
+  }
+}
