@@ -15,17 +15,22 @@
     position: absolute;
     right: 0px;
     top: 100%;
-    width: 6rem;
+    width: 10rem;
     align-items: center;
     z-index: 10;
+    margin-top: 10px;
+    background-color: dark.$bg-element1;
     .itemSelected {
-      background-color: aquamarine;
+      color: dark.$primary1;
     }
     .item {
-      padding-left: 1rem;
+      padding: 0.5rem 0 0.5rem 1rem;
+
+      & + .item {
+        border-top: 1px solid dark.$border4;
+      }
       &:hover {
         cursor: pointer;
-        background-color: aqua;
       }
     }
   }

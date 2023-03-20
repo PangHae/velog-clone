@@ -38,6 +38,11 @@ const NewDropdown: FC<Props> = ({
     }
   }, [selectedItem]);
 
+  const handleClickDropdownItem = (index: number) => {
+    onChange(index);
+    setIsOpen((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className={styles.dropdownWrapper} ref={ref}>
@@ -45,19 +50,24 @@ const NewDropdown: FC<Props> = ({
         <ArrowDown onClick={() => setIsOpen((prevState) => !prevState)} />
         {isOpen && (
           <div className={styles.dropdownItems}>
-            {items.map((value, index) => (
-              <div
-                className={cx(
-                  styles.item,
-                  index === selectedItem && styles.itemSelected
-                )}
-                onClick={() => onChange(index)}
-              >
-                {typeof value !== 'object'
+            {items.map((value, index) => {
+              const text =
+                typeof value !== 'object'
                   ? value.toString()
-                  : itemKey && (value as DropdownObj)[itemKey].toString()}
-              </div>
-            ))}
+                  : itemKey && value[itemKey].toString();
+              return (
+                <div
+                  key={text}
+                  className={cx(
+                    styles.item,
+                    index === selectedItem && styles.itemSelected
+                  )}
+                  onClick={() => handleClickDropdownItem(index)}
+                >
+                  {text}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
