@@ -1,9 +1,32 @@
+@use '@/styles/dark';
+
 .dropdownWrapper {
   display: flex;
+  position: relative;
   padding-left: 8px;
   padding-right: 8px;
-  width: 80px;
-  height: 32px;
-  .dropdownText {
+  width: 6rem;
+  height: 2rem;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: dark.$bg-element1;
+  .dropdownItems {
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    width: 6rem;
+    align-items: center;
+    z-index: 10;
+    .itemSelected {
+      background-color: aquamarine;
+    }
+    .item {
+      padding-left: 1rem;
+      &:hover {
+        cursor: pointer;
+        background-color: aqua;
+      }
+    }
   }
 }
