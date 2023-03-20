@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import NewDropdown from '@/components/base/NewDropdown';
+import NewDropdown, { DropdownObj } from '@/components/base/NewDropdown';
 
 const dropdownItem1 = [1, 2, 3, 4];
 const dropdownItem2 = ['이번 주', '이번 달', '이번 년', '전체'];
@@ -42,17 +42,17 @@ const Design: FC = () => {
 
   return (
     <div style={{ display: 'flex', height: '100wh', gap: '3rem' }}>
-      <NewDropdown
+      <NewDropdown<number>
         items={dropdownItem1}
         selectedItem={currentItem1}
         onChange={handleChangeItem(setCurrentItem1)}
       />
-      <NewDropdown
+      <NewDropdown<string>
         items={dropdownItem2}
         selectedItem={currentItem2}
         onChange={handleChangeItem(setCurrentItem2)}
       />
-      <NewDropdown
+      <NewDropdown<DropdownObj>
         items={dropdownItem3}
         itemKey="label"
         selectedItem={currentItem3}
