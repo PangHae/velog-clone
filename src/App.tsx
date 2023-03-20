@@ -1,21 +1,24 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Home from '@/pages/Home';
 import Article from './pages/Article';
 
+const Design = lazy(() => import('@/pages/Design'));
+
 const App = () => (
-  <BrowserRouter>
-    <Suspense fallback={null}>
+  <Suspense fallback={null}>
+    <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path=":userName/:title" element={<Article />} />
         </Route>
+        <Route path="/design" element={<Design />} />
       </Routes>
-    </Suspense>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Suspense>
 );
 
 export default App;
