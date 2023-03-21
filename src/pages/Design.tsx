@@ -1,9 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import NewDropdown from '@/components/base/NewDropdown';
 
-const dropdownItem1 = [1, 2, 3, 4];
-const dropdownItem2 = ['이번 주', '이번 달', '이번 년', '전체'];
-const dropdownItem3 = [
+const dropdownItem = [
   {
     id: 1,
     name: 'haen1',
@@ -31,32 +29,20 @@ const dropdownItem3 = [
 ];
 
 const Design: FC = () => {
-  const [currentItem1, setCurrentItem1] = useState(0);
-  const [currentItem2, setCurrentItem2] = useState(0);
-  const [currentItem3, setCurrentItem3] = useState(0);
+  const [itemId, setItemId] = useState(0);
 
   const handleChangeItem =
-    (dispatcher: Dispatch<SetStateAction<number>>) => (index: number) => {
-      dispatcher(index);
+    (dispatcher: Dispatch<SetStateAction<number>>) => (id: number) => {
+      dispatcher(id);
     };
 
   return (
     <div style={{ display: 'flex', height: '100wh', gap: '3rem' }}>
       <NewDropdown
-        items={dropdownItem1}
-        selectedItem={currentItem1}
-        onChange={handleChangeItem(setCurrentItem1)}
-      />
-      <NewDropdown
-        items={dropdownItem2}
-        selectedItem={currentItem2}
-        onChange={handleChangeItem(setCurrentItem2)}
-      />
-      <NewDropdown
-        items={dropdownItem3}
-        itemKey="label"
-        selectedItem={currentItem3}
-        onChange={handleChangeItem(setCurrentItem3)}
+        items={dropdownItem}
+        selectedItem={itemId}
+        onChange={handleChangeItem(setItemId)}
+        itemKey=""
       />
     </div>
   );

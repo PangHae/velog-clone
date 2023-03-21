@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cx from 'classnames';
 
 import { ArrowDown } from '@/assets';
@@ -6,42 +6,50 @@ import { ArrowDown } from '@/assets';
 import styles from './dropdown.module.scss';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
-export type DropdownObj = {
+type SingleValue = string | number;
+
+type DropdownObj = {
+  [key: string]: any;
   id: number;
   name: string;
-  value: string;
   label: string;
+  value: string;
 };
 
-interface Props {
-  items: Array<string | number | DropdownObj>;
-  itemKey?: keyof DropdownObj;
+type DropdownItem = SingleValue | DropdownObj;
+
+interface Props<T extends DropdownItem> {
+  items: Array<SingleValue | T>;
+  itemKey: T extends DropdownObj ? keyof DropdownObj : undefined;
   selectedItem: number;
-  // eslint-disable-next-line no-unused-vars
   onChange: (index: number) => void;
 }
 
-const NewDropdown: FC<Props> = ({
+const checkItemIsDropdownObj = (items: unknown[]): items is Array<DropdownObj> => {
+  return items[0] !== null && typeof items[0] === 'object';
+};
+
+const NewDropdown = <T extends DropdownItem>({
   items,
   itemKey,
   selectedItem = 0,
   onChange,
-}) => {
+}: Props<T>) => {
   const { ref, isOpen, setIsOpen } = useOutsideClick();
   const [currentText, setCurrentText] = useState('');
 
-  useEffect(() => {
-    if (typeof items[selectedItem] !== 'object') {
-      setCurrentText(items[selectedItem].toString());
-    } else if (itemKey) {
-      setCurrentText((items[selectedItem] as DropdownObj)[itemKey].toString());
-    }
-  }, [selectedItem]);
-
-  const handleClickDropdownItem = (index: number) => {
-    onChange(index);
+  const handleClickDropdownItem = (id: number) => {
+    onChange(id);
     setIsOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    if(checkItemIsDropdownObj(items)){
+      items.find(value => (value as DropdownObj).id === selectedItem)
+    }else{
+
+    }
+  }, [selectedItem]);
 
   return (
     <>
@@ -50,19 +58,17 @@ const NewDropdown: FC<Props> = ({
         <ArrowDown onClick={() => setIsOpen((prevState) => !prevState)} />
         {isOpen && (
           <div className={styles.dropdownItems}>
-            {items.map((value, index) => {
-              const text =
-                typeof value !== 'object'
-                  ? value.toString()
-                  : itemKey && value[itemKey].toString();
+            {items.map((value) => {
+              const text = value !== 'object' ? itemKey && value[itemKey].toString()
+              : value.toString();
               return (
                 <div
                   key={text}
                   className={cx(
                     styles.item,
-                    index === selectedItem && styles.itemSelected
+                    {[styles.itemSelected] :  }
                   )}
-                  onClick={() => handleClickDropdownItem(index)}
+                  onClick={() => handleClickDropdownItem(value.id)}
                 >
                   {text}
                 </div>
