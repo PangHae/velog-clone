@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import NewDropdown from '@/components/base/NewDropdown';
+import NewDropdown, { SingleValue } from '@/components/base/NewDropdown';
 
 const dropdownItem = [
   {
@@ -29,11 +29,12 @@ const dropdownItem = [
 ];
 
 const Design: FC = () => {
-  const [itemId, setItemId] = useState(0);
+  const [itemId, setItemId] = useState<SingleValue>(0);
 
   const handleChangeItem =
-    (dispatcher: Dispatch<SetStateAction<number>>) => (id: number) => {
-      dispatcher(id);
+    (dispatcher: Dispatch<SetStateAction<SingleValue>>) =>
+    (item: SingleValue) => {
+      dispatcher(item);
     };
 
   return (
