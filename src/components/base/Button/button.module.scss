@@ -1,4 +1,29 @@
-@use '@/styles/dark' as dark;
+@use '@/styles/dark';
+
+@mixin noBackNBorder() {
+  border: none;
+  background: none;
+}
+
+.buttonJSX {
+  display: flex;
+  width: min-content;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.iconButton {
+  @include noBackNBorder();
+}
+
+.modalCloseBtn {
+  @include noBackNBorder();
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+}
 
 .login-button {
   height: 2rem;

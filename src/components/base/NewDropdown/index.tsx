@@ -8,15 +8,15 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 
 export type SingleValue = string | number;
 
-type DropdownObj = {
-  [key: string]: any;
+export type DropdownObj = {
   id: number;
   name: string;
   label: string;
   value: string;
+  // [key: string]: any;
 };
 
-type DropdownItem = SingleValue | DropdownObj;
+export type DropdownItem = SingleValue | DropdownObj;
 
 interface Props<T> {
   items: Array<SingleValue | T>;
@@ -26,13 +26,13 @@ interface Props<T> {
 }
 
 interface ContentProps<T extends unknown> {
-  text: string;
-  value: DropdownItem;
+  text: string | number;
+  value: T;
   selected: boolean;
   onClick: (item: DropdownItem) => void;
 }
 
-const DropdownContent: FC<ContentProps> = ({
+const DropdownContent: FC<ContentProps<DropdownItem>> = ({
   text,
   value,
   selected,
@@ -40,13 +40,13 @@ const DropdownContent: FC<ContentProps> = ({
 }) => {
   return (
     <div
-      key={text}
+      key={text.toString()}
       className={cx(styles.item, {
         [styles.itemSelected]: selected,
       })}
       onClick={() => onClick(value)}
     >
-      {text}
+      {text.toString()}
     </div>
   );
 };
@@ -57,8 +57,8 @@ const NewDropdown = <T extends unknown>({
   selectedItem = 0,
   onChange,
 }: Props<T>) => {
-  const { ref, isOpen, setIsOpen } = useOutsideClick();
-  const [currentText, setCurrentText] = useState<SingleValue>('');
+  const { ref, isOpen, setIsOpen } = useOutsideClick<HTMLDivElement>();
+  const [currentText, setCurrentText] = useState<SingleValue>();
 
   const checkItemIsDropdownObj = (val: unknown): val is DropdownObj => {
     return val !== null && typeof val === 'object';
@@ -79,8 +79,17 @@ const NewDropdown = <T extends unknown>({
     if (checkItemIsDropdownObj(value)) {
       return value[itemKey];
     }
-    return value.toString();
+    return value;
   };
+
+  useEffect(() => {
+    if (typeof selectedItem === 'number' && items.length) {
+      const item = items.find(
+        (value) => (value as DropdownObj).id === selectedItem
+      ) as DropdownObj;
+      setCurrentText(item[itemKey]);
+    }
+  }, []);
 
   return (
     <>
@@ -100,9 +109,9 @@ const NewDropdown = <T extends unknown>({
               return (
                 <DropdownContent
                   text={text}
-                  value={value}
+                  value={value as DropdownItem}
                   selected={selected}
-                  onClick={() => handleClickDropdownItem(value)}
+                  onClick={() => handleClickDropdownItem(value as DropdownItem)}
                 />
               );
             })}
