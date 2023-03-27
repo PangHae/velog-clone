@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useOutsideClick() {
-  const ref = useRef(null);
+function useOutsideClick<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClickOutside = (e: MouseEvent) => {
