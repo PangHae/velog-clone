@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
-export const requestApi = axios.create();
+export const requestApi = axios.create({
+  baseURL: import.meta.env.VITE_URL,
+});
 
 requestApi.interceptors.request.use(
   (config) => {
