@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+// import CSSTransition from 'react-transition-group/CSSTransition';
 import PortalModal from '@/components/base/PortalModal';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import Button from '@/components/base/Button';
@@ -53,7 +54,6 @@ const Design: FC = () => {
       }}
     >
       <Button onClick={() => setIsOpen((prev) => !prev)}>Modal 열기</Button>
-      {/* {isOpen && ( */}
       <PortalModal
         ref={ref}
         isOpen={isOpen}
@@ -68,7 +68,25 @@ const Design: FC = () => {
           onChange={handleChangeSelectedItem}
         />
       </PortalModal>
-      {/* )} */}
+      {/* <CSSTransition
+        in={isOpen}
+        nodeRef={ref}
+        timeout={500}
+        classNames="tranModal"
+      >
+        <PortalModalTransition
+          ref={ref}
+          title="Modal Test"
+          setIsOpen={setIsOpen}
+        >
+          <NewDropdown
+            items={dropdownItem3}
+            itemKey="label"
+            selectedItem={curId}
+            onChange={handleChangeSelectedItem}
+          />
+        </PortalModalTransition>
+      </CSSTransition> */}
     </div>
   );
 };
