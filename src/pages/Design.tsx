@@ -1,8 +1,13 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
-import NewDropdown from '@/components/base/NewDropdown';
+import { FC, useState } from 'react';
+// import CSSTransition from 'react-transition-group/CSSTransition';
+import PortalModal from '@/components/base/PortalModal';
+import useOutsideClick from '@/hooks/useOutsideClick';
+import Button from '@/components/base/Button';
+import NewDropdown, { SingleValue } from '@/components/base/NewDropdown';
+// import NewDropdown from '@/components/base/NewDropdown';
 
-const dropdownItem1 = [1, 2, 3, 4];
-const dropdownItem2 = ['이번 주', '이번 달', '이번 년', '전체'];
+// const dropdownItem1 = [1, 2, 3, 4];
+// const dropdownItem2 = ['이번 주', '이번 달', '이번 년', '전체'];
 const dropdownItem3 = [
   {
     id: 1,
@@ -31,33 +36,57 @@ const dropdownItem3 = [
 ];
 
 const Design: FC = () => {
-  const [currentItem1, setCurrentItem1] = useState(0);
-  const [currentItem2, setCurrentItem2] = useState(0);
-  const [currentItem3, setCurrentItem3] = useState(0);
+  const { isOpen, setIsOpen, ref } = useOutsideClick<HTMLDivElement>();
+  const [curId, setCurId] = useState(1);
 
-  const handleChangeItem =
-    (dispatcher: Dispatch<SetStateAction<number>>) => (index: number) => {
-      dispatcher(index);
-    };
+  const handleChangeSelectedItem = (item: SingleValue) => {
+    setCurId(item as number);
+  };
 
   return (
-    <div style={{ display: 'flex', height: '100wh', gap: '3rem' }}>
-      <NewDropdown
-        items={dropdownItem1}
-        selectedItem={currentItem1}
-        onChange={handleChangeItem(setCurrentItem1)}
-      />
-      <NewDropdown
-        items={dropdownItem2}
-        selectedItem={currentItem2}
-        onChange={handleChangeItem(setCurrentItem2)}
-      />
-      <NewDropdown
-        items={dropdownItem3}
-        itemKey="label"
-        selectedItem={currentItem3}
-        onChange={handleChangeItem(setCurrentItem3)}
-      />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100wh',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Button onClick={() => setIsOpen((prev) => !prev)}>Modal 열기</Button>
+      <PortalModal
+        ref={ref}
+        isOpen={isOpen}
+        title="Modal Test"
+        setIsOpen={setIsOpen}
+        // timeout={500}
+      >
+        <NewDropdown
+          items={dropdownItem3}
+          itemKey="label"
+          selectedItem={curId}
+          onChange={handleChangeSelectedItem}
+        />
+      </PortalModal>
+      {/* <CSSTransition
+        in={isOpen}
+        nodeRef={ref}
+        timeout={500}
+        classNames="tranModal"
+      >
+        <PortalModalTransition
+          ref={ref}
+          title="Modal Test"
+          setIsOpen={setIsOpen}
+        >
+          <NewDropdown
+            items={dropdownItem3}
+            itemKey="label"
+            selectedItem={curId}
+            onChange={handleChangeSelectedItem}
+          />
+        </PortalModalTransition>
+      </CSSTransition> */}
     </div>
   );
 };

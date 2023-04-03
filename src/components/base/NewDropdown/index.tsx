@@ -6,42 +6,90 @@ import { ArrowDown } from '@/assets';
 import styles from './dropdown.module.scss';
 import useOutsideClick from '@/hooks/useOutsideClick';
 
+export type SingleValue = string | number;
+
 export type DropdownObj = {
   id: number;
   name: string;
-  value: string;
   label: string;
+  value: string;
+  // [key: string]: any;
 };
 
-interface Props {
-  items: Array<string | number | DropdownObj>;
-  itemKey?: keyof DropdownObj;
-  selectedItem: number;
-  // eslint-disable-next-line no-unused-vars
-  onChange: (index: number) => void;
+export type DropdownItem = SingleValue | DropdownObj;
+
+interface Props<T> {
+  items: Array<SingleValue | T>;
+  itemKey: T extends DropdownObj ? keyof DropdownObj : never;
+  selectedItem: SingleValue;
+  onChange: (id: SingleValue) => void;
 }
 
-const NewDropdown: FC<Props> = ({
+interface ContentProps<T extends unknown> {
+  text: string | number;
+  value: T;
+  selected: boolean;
+  onClick: (item: DropdownItem) => void;
+}
+
+const DropdownContent: FC<ContentProps<DropdownItem>> = ({
+  text,
+  value,
+  selected,
+  onClick,
+}) => {
+  return (
+    <div
+      key={text.toString()}
+      className={cx(styles.item, {
+        [styles.itemSelected]: selected,
+      })}
+      onClick={() => onClick(value)}
+    >
+      {text.toString()}
+    </div>
+  );
+};
+
+const NewDropdown = <T extends unknown>({
   items,
   itemKey,
   selectedItem = 0,
   onChange,
-}) => {
-  const { ref, isOpen, setIsOpen } = useOutsideClick();
-  const [currentText, setCurrentText] = useState('');
+}: Props<T>) => {
+  const { ref, isOpen, setIsOpen } = useOutsideClick<HTMLDivElement>();
+  const [currentText, setCurrentText] = useState<SingleValue>();
 
-  useEffect(() => {
-    if (typeof items[selectedItem] !== 'object') {
-      setCurrentText(items[selectedItem].toString());
-    } else if (itemKey) {
-      setCurrentText((items[selectedItem] as DropdownObj)[itemKey].toString());
+  const checkItemIsDropdownObj = (val: unknown): val is DropdownObj => {
+    return val !== null && typeof val === 'object';
+  };
+
+  const handleClickDropdownItem = (item: DropdownItem) => {
+    if (checkItemIsDropdownObj(item)) {
+      onChange(item.id);
+      setCurrentText(item[itemKey]);
+    } else {
+      onChange(item);
+      setCurrentText(item);
     }
-  }, [selectedItem]);
-
-  const handleClickDropdownItem = (index: number) => {
-    onChange(index);
     setIsOpen((prevState) => !prevState);
   };
+
+  const getCurrentText = (value: DropdownItem) => {
+    if (checkItemIsDropdownObj(value)) {
+      return value[itemKey];
+    }
+    return value;
+  };
+
+  useEffect(() => {
+    if (typeof selectedItem === 'number' && items.length) {
+      const item = items.find(
+        (value) => (value as DropdownObj).id === selectedItem
+      ) as DropdownObj;
+      setCurrentText(item[itemKey]);
+    }
+  }, []);
 
   return (
     <>
@@ -50,22 +98,21 @@ const NewDropdown: FC<Props> = ({
         <ArrowDown onClick={() => setIsOpen((prevState) => !prevState)} />
         {isOpen && (
           <div className={styles.dropdownItems}>
-            {items.map((value, index) => {
-              const text =
-                typeof value !== 'object'
-                  ? value.toString()
-                  : itemKey && value[itemKey].toString();
+            {items.map((value) => {
+              const text = getCurrentText(value as DropdownItem);
+              let selected;
+              if (checkItemIsDropdownObj(value)) {
+                selected = value.id === selectedItem;
+              } else {
+                selected = value === selectedItem;
+              }
               return (
-                <div
-                  key={text}
-                  className={cx(
-                    styles.item,
-                    index === selectedItem && styles.itemSelected
-                  )}
-                  onClick={() => handleClickDropdownItem(index)}
-                >
-                  {text}
-                </div>
+                <DropdownContent
+                  text={text}
+                  value={value as DropdownItem}
+                  selected={selected}
+                  onClick={() => handleClickDropdownItem(value as DropdownItem)}
+                />
               );
             })}
           </div>
