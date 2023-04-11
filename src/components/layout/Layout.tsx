@@ -8,7 +8,6 @@ const Layout: FC = () => {
   const scrollPositionRef = useRef(0);
   // scroll이 윗 방향일 시 true, else false
   const scrollDirectionRef = useRef<'UP' | 'DOWN'>('DOWN');
-  const [floatHeaderVisible, setFloatHeaderVisible] = useState(false);
   const [marginTop, setMarginTop] = useState(-100);
 
   const style: CSSProperties = {
@@ -24,10 +23,6 @@ const Layout: FC = () => {
     const handleScrollEvent = () => {
       if (scrollPositionRef.current < window.scrollY) {
         scrollDirectionRef.current = 'DOWN';
-        if (marginTop === -100) {
-          setFloatHeaderVisible(false);
-          // return;
-        }
         setMarginTop((prev) =>
           prev - window.scrollY + scrollPositionRef.current > -100
             ? prev - window.scrollY + scrollPositionRef.current
@@ -36,10 +31,8 @@ const Layout: FC = () => {
       } else {
         scrollDirectionRef.current = 'UP';
         if (scrollPositionRef.current < 64) {
-          setFloatHeaderVisible(false);
           setMarginTop(-100);
         } else {
-          setFloatHeaderVisible(true);
           setMarginTop((prev) =>
             prev + scrollPositionRef.current - window.scrollY < 0
               ? prev + scrollPositionRef.current - window.scrollY
@@ -56,7 +49,7 @@ const Layout: FC = () => {
   return (
     <>
       <Header />
-      {floatHeaderVisible && <Header style={style} />}
+      <Header style={style} />
       <Outlet />
     </>
   );
