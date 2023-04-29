@@ -63,3 +63,29 @@ a {
   width: 100%;
   height: 100%;
 }
+
+.portal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+// .tranModal-enter {
+//   &-active .modal {
+//     opacity: 1;
+//     transition: opacity 500ms;
+//   }
+//   .modal {
+//     opacity: 0;
+//   }
+// }
+
+// .tranModal-exit {
+//   &-active .modal {
+//     opacity: 0;
+//     transition: opacity 500ms;
+//   }
+//   .modal {
+//     opacity: 1;
+//   }
+// }

@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useState } from 'react';
+import { CSSProperties, FC, useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Button from '../base/Button';
@@ -10,7 +10,11 @@ import { ReactComponent as VelogSmall } from '@/assets/velogSmall.svg';
 
 import '@/styles/components/header.scss';
 
-const Header: FC<{}> = () => {
+interface Props {
+  style?: CSSProperties;
+}
+
+const Header: FC<Props> = ({ style }) => {
   const location = useLocation();
   const [checkIsPersonal, setCheckIsPersonal] = useState(false);
 
@@ -23,7 +27,8 @@ const Header: FC<{}> = () => {
   }, [location]);
 
   return (
-    <header className="common-header">
+    // 강제로
+    <header className="common-header" style={style}>
       <div className="header-nav">
         <div className="logo">
           <a href="/" className={checkIsPersonal ? 'personal' : ''}>

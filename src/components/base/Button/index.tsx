@@ -1,9 +1,10 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 import cx from 'classnames';
-import '@/styles/components/button.scss';
+import styles from './button.module.scss';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  icon?: ReactNode;
 }
 
 const Button: FC<Props> = ({
@@ -11,16 +12,18 @@ const Button: FC<Props> = ({
   className = '',
   value,
   children,
+  icon,
   ...props
 }: Props) => {
   return (
     <button
       type={type || 'button'}
-      className={cx(className)}
+      className={cx(styles.buttonJSX, { [styles[className]]: !!className })}
       value={value}
       {...props}
     >
       {children}
+      {icon}
     </button>
   );
 };
