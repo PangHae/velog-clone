@@ -12,9 +12,8 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v3
-      - name : version check
-        run : node -v
-        run : yarn --version
+      - name: version check
+        run: node -v; yarn --version;
       - name: yarn install
         run: yarn install
       - name: build storybook
