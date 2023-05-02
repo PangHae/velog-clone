@@ -35,6 +35,13 @@ export const LoginButton: Story = {
   render: (args) => <Button {...args}>로그인</Button>,
 };
 
+export const RadioButton: Story = {
+  args: {
+    type: 'submit',
+    children: 'Submit',
+  },
+};
+
 export const ModalCloseButton: Story = {
   args: {
     className: 'modalCloseBtn',
