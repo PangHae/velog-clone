@@ -19,4 +19,7 @@ jobs:
       - name: build storybook
         run: yarn build-storybook
       - name: upload to chromatic
-        run: yarn chromatic --project-token=${{secrets.CHROMATIC_TOKEN}}
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{secrets.CHROMATIC_TOKEN}}
+          token: ${{secrets.TOKEN}}
